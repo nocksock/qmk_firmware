@@ -1,22 +1,54 @@
 #include QMK_KEYBOARD_H
+#include "./oneshot.h"
 
+// format macro: Vjjga*€kr,^f5f,kkA		^
 // keycodes overview: https://github.com/qmk/qmk_firmware/blob/master/docs/keycodes.md
 
-#define KC_LTZ LT(4, KC_Z) 
-#define KC_LTSLSH LT(4, KC_SLSH) 
+enum layers {
+  BASE,
+  SYM,
+  EXT,
+  NUM,
+  SYS,
+  FKEY
+};
+
+#define KC_LTZ LT(NUM, KC_Z) 
+#define LT_A LGUI_T(KC_A)  
+#define LT_S LALT_T(KC_S) 
+#define LT_D LCTL_T(KC_D) 
+#define LT_F LSFT_T(KC_F) 
+#define LT_G HYPR_T(KC_G) 
+#define LT_H HYPR_T(KC_H) 
+#define LT_J RSFT_T(KC_J) 
+#define LT_K RCTL_T(KC_K) 
+#define LT_L RALT_T(KC_L) 
+#define LT_SCLN RGUI_T(KC_SCLN)
+
+#define OSL_SYM MO(SYM)
+#define OSL_EXT MO(EXT)
+#define OSL_NUM OSL(NUM)
+#define OSL_FKEY OSL(FKEY)
+#define OSL_SYS OSL(SYS)
+#define OSM_HYPR OSM(MOD_HYPR)
+
+
+enum keycodes {
+	OS_SHFT = SAFE_RANGE,
+	OS_CTRL,
+	OS_ALT,
+	OS_CMD,
+};
+
+oneshot_state os_shft_state = os_up_unqueued;
+oneshot_state os_ctrl_state = os_up_unqueued;
+oneshot_state os_alt_state  = os_up_unqueued;
+oneshot_state os_cmd_state  = os_up_unqueued;
 
 const uint16_t PROGMEM comb_we[] = {KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM comb_xc[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM comb_io[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM comb_comdot[] = {KC_COMM, KC_DOT, COMBO_END};
-
-#define DEFAULT_LAYER   0
-#define GAMING_LAYER    1
-#define SYMBOLS_LAYER   2
-#define EXTENSION_LAYER 3
-#define NUMBERS_LAYER   4
-#define FKEY_LAYER      5
-#define SYSTEM_LAYER    6
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(comb_we, KC_ESC),
@@ -25,67 +57,107 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(comb_comdot, KC_ENT)
 };
 
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  // base layer
-  // ----------
-  
-  [DEFAULT_LAYER] = LAYOUT( 
-      KC_Q         , KC_W         , KC_E         , KC_R         , KC_T , KC_Y , KC_U         , KC_I         , KC_O         , KC_P            ,
-      LGUI_T(KC_A) , LALT_T(KC_S) , LCTL_T(KC_D) , LSFT_T(KC_F) , HYPR_T(KC_G) , HYPR_T(KC_H) , RSFT_T(KC_J) , RCTL_T(KC_K) , RALT_T(KC_L) , RGUI_T(KC_SCLN) ,
-      KC_LTZ       , KC_X         , KC_C         , KC_V         , KC_B , KC_N , KC_M         , KC_COMM      , KC_DOT       , KC_LTSLSH       ,
-         LT(EXTENSION_LAYER, KC_SPC), HYPR_T(KC_BSPC), HYPR_T(KC_ESC), LT(SYMBOLS_LAYER, KC_ENT)
+  // base with homerow mod-taps
+  [BASE] = LAYOUT( 
+        KC_Q   , KC_W , KC_E , KC_R , KC_T ,     KC_Y , KC_U , KC_I    , KC_O   , KC_P    ,
+        LT_A   , LT_S , LT_D , LT_F , LT_G ,     LT_H , LT_J , LT_K    , LT_L   , LT_SCLN ,
+        KC_LTZ , KC_X , KC_C , KC_V , KC_B ,     KC_N , KC_M , KC_COMM , KC_DOT , KC_SLSH ,
+        KC_SPC , OSL_EXT , OSL_SYM , KC_ENT
   ),
   
-  
-  // qwerty no homerow layer qp
-  [GAMING_LAYER] = LAYOUT( 
-      KC_Q         , KC_W         , KC_E         , KC_R         , KC_T , KC_Y , KC_U         , KC_I         , KC_O         , KC_P            ,
-      KC_A , KC_S , KC_D , KC_F , KC_G , KC_H , KC_J , KC_K , KC_L , KC_SCLN ,
-      KC_LTZ       , KC_X         , KC_C         , KC_V         , KC_B , KC_N , KC_M         , KC_COMM      , KC_DOT       , KC_LTSLSH       ,
-         KC_SPC, MO(EXTENSION_LAYER), MO(SYMBOLS_LAYER), KC_ENT
+  // [BASE] = LAYOUT( 
+  //       KC_Q   , KC_W , KC_E , KC_R , KC_T ,     KC_Y , KC_U , KC_I    , KC_O   , KC_P    ,
+  //       KC_A   , KC_S , KC_D , KC_F , KC_G ,     KC_H , KC_J , KC_K    , KC_L   , KC_SCLN ,
+  //       KC_LTZ , KC_X , KC_C , KC_V , KC_B ,     KC_N , KC_M , KC_COMM , KC_DOT , KC_SLSH ,
+  //       KC_SPC, OSL_EXT, OSL_SYM, KC_ENT
+  // ),
+
+  [SYM] = LAYOUT( 
+        KC_EXLM  , KC_AT   , KC_HASH , KC_DLR  , KC_PERC ,     KC_CIRC  , KC_AMPR , KC_ASTR , KC_DQUO , KC_MINUS ,
+        KC_EQUAL , KC_LCBR , KC_LPRN , KC_RPRN , KC_RCBR ,     KC_QUOTE , OS_SHFT , OS_CTRL , OS_ALT  , OS_CMD   ,
+        KC_GRV   , XXXXXXX , KC_LBRC , KC_RBRC , KC_BSLS ,     XXXXXXX  , KC_UNDS , KC_LABK , KC_RABK , KC_SLSH  ,
+        _______  , MO(FKEY), XXXXXXX, XXXXXXX
   ),
 
-    
-  // symbol layer
-  [SYMBOLS_LAYER] = LAYOUT( 
-      KC_EXLM  , KC_AT   , KC_HASH , KC_DLR  , KC_PERC , KC_CIRC  , KC_AMPR       , KC_ASTR       , KC_DQUO       , KC_MINUS      ,
-      KC_EQUAL , KC_LCBR , KC_LPRN , KC_RPRN , KC_RCBR , KC_QUOTE , OSM( MOD_RSFT ) , OSM( MOD_RCTL ) , OSM( MOD_RALT ) , OSM( MOD_RGUI ) ,
-      KC_GRV   , XXXXXXX , KC_LBRC , KC_RBRC , KC_BSLS , XXXXXXX  , KC_UNDS       , KC_LABK       , KC_RABK       , KC_SLSH       ,
-              LT(FKEY_LAYER, KC_SPC), LALT(KC_BACKSPACE), _______, _______
+  [EXT] = LAYOUT( 
+        KC_ESC , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX  ,    KC_HOME , KC_PGDN , KC_PGUP , KC_END   , CAPSWRD ,
+        OS_CMD , OS_ALT  , OS_CTRL , OS_SHFT , OSM_HYPR ,    KC_LEFT , KC_DOWN , KC_UP   , KC_RIGHT , XXXXXXX ,
+        KC_TAB , XXXXXXX , KC_BSPC , KC_ENT  , KC_MPLY  ,    KC_BSPC , XXXXXXX , XXXXXXX , KC_DEL   , XXXXXXX ,
+        _______  , _______ ,  MO(FKEY), _______
   ),
 
-  // extension layer (navigation)
-  [EXTENSION_LAYER] = LAYOUT( 
-      KC_TAB,  KC_BSPC , XXXXXXX  ,  KC_ENT , XXXXXXX , KC_HOME , KC_PGDN , KC_PGUP , KC_END   , CAPSWRD ,
-      OSM( MOD_LGUI ), OSM( MOD_LALT ) , OSM( MOD_LCTL ) , OSM( MOD_LSFT ) , OSM( MOD_HYPR ) , KC_LEFT , KC_DOWN ,   KC_UP , KC_RIGHT ,  KC_DEL ,
-      XXXXXXX, XXXXXXX , XXXXXXX  ,  KC_MPLY , XXXXXXX ,  XXXXXXX , XXXXXXX  , XXXXXXX , XXXXXXX  , XXXXXXX ,
-                        _______ , _______ , _______ , MO(FKEY_LAYER)
+  [NUM] = LAYOUT( 
+        KC_1    , KC_2    , KC_3    , KC_4    , KC_5     ,     KC_6    , KC_7 , KC_8 , KC_9 , KC_0    ,
+        OS_CMD  , OS_ALT  , OS_CTRL , OS_SHFT , OSM_HYPR ,     XXXXXXX , KC_4 , KC_5 , KC_6 , OS_CMD  ,
+        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX  ,     KC_0    , KC_1 , KC_2 , KC_3 , XXXXXXX ,
+        _______ , _______ , _______ , _______
   ),
 
-
-  // num layer
-  [NUMBERS_LAYER] = LAYOUT( 
-      KC_1    , KC_2    , KC_3    , KC_4    , KC_5    , KC_6    , KC_7 , KC_8 , KC_9 , KC_0    ,
-      _______ , _______ , _______ , _______ , _______ , XXXXXXX , KC_4 , KC_5 , KC_6 , _______ ,
-      XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_0    , KC_1 , KC_2 , KC_3 , XXXXXXX ,
-                                    _______ , _______ , _______ , _______
-  ),
-
-  // fkey-layer
-  [FKEY_LAYER] = LAYOUT( 
-      XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_F12 , KC_F7 , KC_F8 , KC_F9 , OSL(SYSTEM_LAYER) ,
-      _______ , _______ , _______ , _______ , XXXXXXX , KC_F11 , KC_F4 , KC_F5 , KC_F6 , XXXXXXX ,
-      XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , KC_F10 , KC_F1 , KC_F2 , KC_F3 , XXXXXXX ,
-                       _______, _______, _______, _______
+  [FKEY] = LAYOUT( 
+        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX  ,     KC_F12 , KC_F7 , KC_F8 , KC_F9 , XXXXXXX ,
+        OS_CMD  , OS_ALT  , OS_CTRL , OS_SHFT , OSM_HYPR ,     KC_F11 , KC_F4 , KC_F5 , KC_F6 , OSL_SYS ,
+        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX  ,     KC_F10 , KC_F1 , KC_F2 , KC_F3 , XXXXXXX ,
+        _______ , _______ , _______ , _______
   ),
 
   // system layer
-  [SYSTEM_LAYER] = LAYOUT( 
-      DF(GAMING_LAYER) , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , QK_BOOT , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
-      XXXXXXX , XXXXXXX , XXXXXXX , DF(DEFAULT_LAYER) , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
-      XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
-                       _______, _______, _______, _______
+  [SYS] = LAYOUT( 
+        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,    QK_BOOT , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,    XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,    XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+        _______, _______, _______, _______
   ),
 };
+
+bool is_oneshot_cancel_key(uint16_t keycode) {
+    switch (keycode) {
+    case OSL_SYS:
+    // case OSL_GAME_EXT:
+    case OSL_EXT:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool is_oneshot_ignored_key(uint16_t keycode) {
+    switch (keycode) {
+    case OSL_SYM:
+    case OSL_EXT:
+    // case OSL_GAME_EXT:
+    case OS_SHFT:
+    case OS_CTRL:
+    case OS_ALT:
+    case OS_CMD:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool process_record_user( uint16_t keycode, keyrecord_t *record ) {
+	#ifdef CONSOLE_ENABLE
+		uprintf(
+			"keycode: %u, layer_state: %u, pressed: %u, shift: %u, ctrl: %u, alt: %u, cmd: %u \n",
+			keycode,
+			layer_state,
+			record->event.pressed,
+			os_shft_state,
+			os_ctrl_state,
+			os_alt_state,
+			os_cmd_state
+		);
+	#endif
+
+	// Turn one-shot mods on/off.
+	update_oneshot( &os_shft_state, KC_LSFT, OS_SHFT, keycode, record );
+	update_oneshot( &os_ctrl_state, KC_LCTL, OS_CTRL, keycode, record );
+	update_oneshot(	&os_alt_state,  KC_LALT, OS_ALT,  keycode, record );
+	update_oneshot( &os_cmd_state,  KC_LCMD, OS_CMD,  keycode, record );
+
+	return true; // Continue processing the key event
+}
 
 // vi: nowrap
