@@ -14,24 +14,13 @@ enum layers {
 };
 
 #define KC_LTZ LT(NUM, KC_Z) 
-#define LT_A LGUI_T(KC_A)  
-#define LT_S LALT_T(KC_S) 
-#define LT_D LCTL_T(KC_D) 
-#define LT_F LSFT_T(KC_F) 
-#define LT_G HYPR_T(KC_G) 
-#define LT_H HYPR_T(KC_H) 
-#define LT_J RSFT_T(KC_J) 
-#define LT_K RCTL_T(KC_K) 
-#define LT_L RALT_T(KC_L) 
-#define LT_SCLN RGUI_T(KC_SCLN)
 
-#define OSL_SYM MO(SYM)
-#define OSL_EXT MO(EXT)
-#define OSL_NUM OSL(NUM)
-#define OSL_FKEY OSL(FKEY)
-#define OSL_SYS OSL(SYS)
+#define LA_SYM MO(SYM)
+#define LA_EXT MO(EXT)
+#define LA_NUM OSL(NUM)
+#define LA_FKEY OSL(FKEY)
+#define LA_SYS OSL(SYS)
 #define OSM_HYPR OSM(MOD_HYPR)
-
 
 enum keycodes {
 	OS_SHFT = SAFE_RANGE,
@@ -59,26 +48,18 @@ combo_t key_combos[COMBO_COUNT] = {
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  // base with homerow mod-taps
   [BASE] = LAYOUT( 
         KC_Q   , KC_W , KC_E , KC_R , KC_T ,     KC_Y , KC_U , KC_I    , KC_O   , KC_P    ,
-        LT_A   , LT_S , LT_D , LT_F , LT_G ,     LT_H , LT_J , LT_K    , LT_L   , LT_SCLN ,
+        KC_A   , KC_S , KC_D , KC_F , KC_G ,     KC_H , KC_J , KC_K    , KC_L   , KC_SCLN ,
         KC_LTZ , KC_X , KC_C , KC_V , KC_B ,     KC_N , KC_M , KC_COMM , KC_DOT , KC_SLSH ,
-        KC_SPC , OSL_EXT , OSL_SYM , KC_ENT
+        KC_SPC , LA_EXT , LA_SYM , KC_RSFT
   ),
-  
-  // [BASE] = LAYOUT( 
-  //       KC_Q   , KC_W , KC_E , KC_R , KC_T ,     KC_Y , KC_U , KC_I    , KC_O   , KC_P    ,
-  //       KC_A   , KC_S , KC_D , KC_F , KC_G ,     KC_H , KC_J , KC_K    , KC_L   , KC_SCLN ,
-  //       KC_LTZ , KC_X , KC_C , KC_V , KC_B ,     KC_N , KC_M , KC_COMM , KC_DOT , KC_SLSH ,
-  //       KC_SPC, OSL_EXT, OSL_SYM, KC_ENT
-  // ),
 
   [SYM] = LAYOUT( 
         KC_EXLM  , KC_AT   , KC_HASH , KC_DLR  , KC_PERC ,     KC_CIRC  , KC_AMPR , KC_ASTR , KC_DQUO , KC_MINUS ,
         KC_EQUAL , KC_LCBR , KC_LPRN , KC_RPRN , KC_RCBR ,     KC_QUOTE , OS_SHFT , OS_CTRL , OS_ALT  , OS_CMD   ,
         KC_GRV   , XXXXXXX , KC_LBRC , KC_RBRC , KC_BSLS ,     XXXXXXX  , KC_UNDS , KC_LABK , KC_RABK , KC_SLSH  ,
-        _______  , MO(FKEY), XXXXXXX, XXXXXXX
+        _______  , MO(FKEY), _______, _______
   ),
 
   [EXT] = LAYOUT( 
@@ -97,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [FKEY] = LAYOUT( 
         XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX  ,     KC_F12 , KC_F7 , KC_F8 , KC_F9 , XXXXXXX ,
-        OS_CMD  , OS_ALT  , OS_CTRL , OS_SHFT , OSM_HYPR ,     KC_F11 , KC_F4 , KC_F5 , KC_F6 , OSL_SYS ,
+        OS_CMD  , OS_ALT  , OS_CTRL , OS_SHFT , OSM_HYPR ,     KC_F11 , KC_F4 , KC_F5 , KC_F6 , LA_SYS ,
         XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX  ,     KC_F10 , KC_F1 , KC_F2 , KC_F3 , XXXXXXX ,
         _______ , _______ , _______ , _______
   ),
@@ -111,11 +92,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
+
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
-    case OSL_SYS:
-    // case OSL_GAME_EXT:
-    case OSL_EXT:
+    case LA_SYM:
+    case LA_EXT:
         return true;
     default:
         return false;
@@ -124,9 +105,8 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-    case OSL_SYM:
-    case OSL_EXT:
-    // case OSL_GAME_EXT:
+    case LA_SYM:
+    case LA_EXT:
     case OS_SHFT:
     case OS_CTRL:
     case OS_ALT:
