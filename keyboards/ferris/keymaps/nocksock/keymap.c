@@ -1,3 +1,5 @@
+#include <stdint.h>
+
 #include QMK_KEYBOARD_H
 #include "nocksock.h"
 #include "oneshot.h"
@@ -5,6 +7,7 @@
 
 // format macro: Vjjga*kr,^f5f,kkA		^
 
+// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT(
           KC_Q,   KC_W, KC_E, KC_R, KC_T,        KC_Y, KC_U, KC_I,    KC_O,   KC_P,
@@ -14,10 +17,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [SYM] = LAYOUT(
-        KC_ESC,  KC_LBRC, KC_LPRN, KC_LCBR, KC_TILD,         KC_CIRC, KC_RCBR, KC_RPRN, KC_RBRC, KC_GRV,
-        KC_MINS, KC_ASTR, KC_EQL,  KC_UNDS, KC_DLR,          KC_HASH, OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,
-        KC_PLUS, KC_PIPE, KC_AT,   KC_SLSH, KC_PERC,         XXXXXXX, KC_BSLS, KC_AMPR, KC_EXLM, KC_QUES,
-                                   _______, _______, _______, _______
+        KC_ESC  , KC_LBRC , KC_LPRN , KC_LCBR , KC_TILD , KC_CIRC , KC_RCBR , KC_RPRN , KC_RBRC , KC_GRV  ,
+        KC_MINS , KC_ASTR , KC_EQL  , KC_UNDS , KC_DLR  , KC_HASH , OS_SHFT , OS_CTRL , OS_ALT  , OS_CMD  ,
+        KC_PLUS , KC_PIPE , KC_AT   , KC_SLSH , KC_PERC , XXXXXXX , KC_BSLS , KC_AMPR , KC_EXLM , KC_QUES ,
+        _______ , _______ , _______ , _______
     ),
 
     [NAV] = LAYOUT(

@@ -9,6 +9,7 @@ enum layers {
     NUM,
     FKEY,
     NUMPAD,
+    COLOR,
 };
 
 enum keycodes {
@@ -36,6 +37,8 @@ enum keycodes {
 #define LA_NAV MO(NAV)
 #define LA_NUM MO(NUM)
 #define KC_LTZ LT(NUMPAD, KC_Z)
+#define KC_SESC RSFT_T(KC_ESC)
+#define KC_RTNC RCTL_T(KC_ENT)
 
 // Function prototypes
 bool is_oneshot_cancel_key(uint16_t keycode);
