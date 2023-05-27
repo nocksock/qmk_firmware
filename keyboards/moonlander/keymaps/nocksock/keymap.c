@@ -23,16 +23,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______ , KC_MINS , KC_ASTR , KC_EQL  , KC_UNDS , KC_DLR  , _______ , _______ , KC_HASH , OS_SHFT , OS_CTRL , OS_ALT  , OS_CMD  , _______ ,
         _______ , KC_PLUS , KC_PIPE , KC_AT   , KC_SLSH , KC_PERC ,                     XXXXXXX , KC_BSLS , KC_AMPR , KC_EXLM , KC_QUES , _______ ,
         _______ , _______ , _______ , _______ , _______ ,           _______ , _______ ,           _______ , _______ , _______ , _______ , _______ ,
-                                      _______ , _______ , _______,                      _______ , _______  , _______
+                                      _______ , _______ , _______ ,                     _______ , _______ , _______
     ),
 
     [NAV] = LAYOUT_moonlander(
         _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ ,
-        _______ , KC_TAB,  SW_WIN,  TAB_L,   TAB_R,   KC_VOLU ,     _______ , _______ , QK_BOOT, HOME,    KC_CAPS, END,     KC_DEL,  _______ ,
-        _______ , OS_CMD,  OS_ALT,  OS_CTRL, OS_SHFT, KC_VOLD ,     _______ , _______ , KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSPC, _______ ,
-        _______ , SPACE_L, SPACE_R, BACK,    FWD,     KC_MPLY ,                         CW_TOGG, KC_PGDN, KC_PGUP, SW_LANG, KC_ENT,  _______ ,
+        _______ , KC_TAB  , SW_WIN  , TAB_L   , TAB_R   , KC_VOLU , _______ , _______ , QK_BOOT , HOME    , KC_CAPS , END     , KC_DEL  , _______ ,
+        _______ , OS_CMD  , OS_ALT  , OS_CTRL , OS_SHFT , KC_VOLD , _______ , _______ , KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , KC_BSPC , _______ ,
+        _______ , SPACE_L , SPACE_R , BACK    , FWD     , KC_MPLY ,                     CW_TOGG , KC_PGDN , KC_PGUP , SW_LANG , KC_ENT  , _______ ,
         _______ , _______ , _______ , _______ , _______ ,           _______ , _______ ,           _______ , _______ , _______ , _______ , _______ ,
-                                      _______ , _______ , _______,                      _______ , _______  , _______
+                                      _______ , _______ , _______ ,                     _______ , _______ , _______
     ),
 
     [NUM] = LAYOUT_moonlander(
@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______ , OS_SHFT , OS_CTRL , OS_ALT  , OS_CMD  , KC_F11  , _______ , _______ , KC_F12  , OS_CMD  , OS_ALT  , OS_CTRL , OS_SHFT , _______ ,
         _______ , KC_F7   , KC_F5   , KC_F3   , KC_F1   , KC_F9   ,                     KC_F8   , KC_F10  , KC_F2   , KC_F4   , KC_F6   , _______ ,
         _______ , _______ , _______ , _______ , _______ ,           _______ , _______ ,           _______ , _______ , _______ , _______ , _______ ,
-                                      _______ , _______ , _______,                      _______ , _______  , _______
+                                      _______ , _______ , _______ ,                     _______ , _______ , _______
     ),
 
     [NUMPAD] = LAYOUT_moonlander(
@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______ , RGB_RMOD , RGB_VAD , RGB_HUD , RGB_SAD , RGB_SPD , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ ,
         _______ , _______ , _______ , _______ , _______ , _______ ,                      _______ , _______ , _______ , _______ , _______ , _______ ,
         _______ , _______ , _______ , _______ , _______ ,            _______ , _______ ,           _______ , _______ , _______ , _______ , _______ ,
-                                     _______ , _______ , _______ ,                       _______ , _______ , _______
+                                      _______ , _______ , _______ ,                      _______ , _______ , _______
     ),
 
 };
