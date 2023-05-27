@@ -13,11 +13,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           KC_Q,   KC_W, KC_E, KC_R, KC_T,        KC_Y, KC_U, KC_I,    KC_O,   KC_P,
           KC_A,   KC_S, KC_D, KC_F, KC_G,        KC_H, KC_J, KC_K,    KC_L,   KC_SCLN,
           KC_LTZ, KC_X, KC_C, KC_V, KC_B,        KC_N, KC_M, KC_COMM, KC_DOT, KC_QUOT,
-          LA_NAV , KC_SPC , RSFT_T(KC_ESC), LA_SYM
+          KC_SPC ,LA_NAV, LA_SYM ,  RSFT_T(KC_ESC)
     ),
 
     [SYM] = LAYOUT(
-        KC_ESC  , KC_LBRC , KC_LPRN , KC_LCBR , KC_TILD , KC_CIRC , KC_RCBR , KC_RPRN , KC_RBRC , KC_GRV  ,
+        KC_ESC  , KC_LBRC , KC_LCBR , KC_LPRN , KC_TILD , KC_CIRC , KC_RPRN , KC_RCBR , KC_RBRC , KC_GRV  ,
         KC_MINS , KC_ASTR , KC_EQL  , KC_UNDS , KC_DLR  , KC_HASH , OS_SHFT , OS_CTRL , OS_ALT  , OS_CMD  ,
         KC_PLUS , KC_PIPE , KC_AT   , KC_SLSH , KC_PERC , XXXXXXX , KC_BSLS , KC_AMPR , KC_EXLM , KC_QUES ,
         _______ , _______ , _______ , _______
@@ -40,9 +40,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NUMPAD] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, KC_7, KC_8, KC_9, KC_0,
         XXXXXXX, OS_ALT,  OS_CTRL, OS_SHFT, OSM_HYPR,         XXXXXXX, KC_4, KC_5, KC_6, OS_CMD,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, KC_1, KC_2, KC_3, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_0   , KC_1, KC_2, KC_3, XXXXXXX,
         _______ , OS_CMD , _______ , _______
     ),
+
 };
 
 // vi: nowrap
