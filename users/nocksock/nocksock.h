@@ -39,6 +39,8 @@ enum keycodes {
 #define KC_LTZ LT(NUMPAD, KC_Z)
 #define KC_SESC RSFT_T(KC_ESC)
 #define KC_RTNC RCTL_T(KC_ENT)
+#define KC_HTAB HYPR_T(KC_TAB)
+#define KC_SESC RSFT_T(KC_ESC)
 
 // Function prototypes
 bool is_oneshot_cancel_key(uint16_t keycode);
