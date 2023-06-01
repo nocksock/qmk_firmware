@@ -41,6 +41,7 @@ enum keycodes {
 #define KC_RTNC RCTL_T(KC_ENT)
 #define KC_HTAB HYPR_T(KC_TAB)
 #define KC_SESC RSFT_T(KC_ESC)
+#define KC_CQOT RCTL_T(KC_QUOT)
 
 // Function prototypes
 bool is_oneshot_cancel_key(uint16_t keycode);
