@@ -38,13 +38,12 @@ enum keycodes {
 #define LA_NUM MO(NUM)
 #define KC_LTZ LT(NUMPAD, KC_Z)
 #define KC_SESC RSFT_T(KC_ESC)
+#define KC_SRET RSFT_T(KC_ENT)
 #define KC_RTNC RCTL_T(KC_ENT)
 #define KC_HTAB HYPR_T(KC_TAB)
 #define KC_SESC RSFT_T(KC_ESC)
 #define KC_CQOT RCTL_T(KC_QUOT)
 
 // Function prototypes
-bool is_oneshot_cancel_key(uint16_t keycode);
-bool is_oneshot_ignored_key(uint16_t keycode);
 bool process_record_user(uint16_t keycode, keyrecord_t *record);
 layer_state_t layer_state_set_user(layer_state_t state);

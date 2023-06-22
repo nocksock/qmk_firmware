@@ -3,7 +3,6 @@
 #include "oneshot.h"
 #include "swapper.h"
 
-// format macro: Vjjga*kr,^f5f,kkA		^
 // keycodes overview: https://github.com/qmk/qmk_firmware/blob/master/docs/keycodes.md
 
 bool is_oneshot_cancel_key(uint16_t keycode) {
