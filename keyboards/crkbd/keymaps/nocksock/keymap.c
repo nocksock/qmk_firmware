@@ -14,19 +14,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LCTL , KC_A   , KC_S   , KC_D   , KC_F    , KC_G , KC_H , KC_J , KC_K    , KC_L   , KC_SCLN , KC_CQOT ,
       KC_LSFT , KC_LTZ , KC_X   , KC_C   , KC_V    , KC_B , KC_N , KC_M , KC_COMM , KC_DOT , KC_SLSH , KC_SRET  ,
       KC_LGUI , KC_SPC , LA_NAV , LA_SYM , KC_RSFT , KC_ROPT
-  ),
+    ),
 
     [SYM] = LAYOUT_split_3x6_3(
-        _______ , KC_ESC  , KC_AT   , KC_HASH , KC_DLR  , KC_PERC , KC_CIRC , KC_AMPR , KC_ASTR , KC_LBRC , KC_RBRC , _______ ,
-        _______ , KC_MINS , KC_QUOT , KC_LPRN , KC_RPRN , KC_EQL  , XXXXXXX , OS_SHFT , OS_CTRL , OS_ALT  , OS_CMD  , _______ ,
-        _______ , KC_GRV  , XXXXXXX , XXXXXXX , KC_BSLS , XXXXXXX , XXXXXXX , KC_EXLM , KC_LABK , KC_RABK , KC_QUES , _______ ,
+        _______ , KC_ESC  , KC_AT   , KC_HASH , KC_DLR  , KC_PERC , KC_CIRC , KC_AMPR , KC_ASTR , KC_LCBR , KC_RCBR , _______ ,
+        _______ , KC_MINS , KC_DQUO , KC_LPRN , KC_RPRN , KC_EQL  , XXXXXXX , OS_SHFT , OS_CTRL , OS_ALT  , OS_CMD  , _______ ,
+        _______ , KC_GRV  , KC_BSLS , KC_LBRC , KC_RBRC , KC_UNDS , XXXXXXX , KC_EXLM , KC_LABK , KC_RABK , KC_QUES , _______ ,
         _______ , _______ , _______ ,  _______ , _______ , _______
-  ),
+    ),
 
     [NAV] = LAYOUT_split_3x6_3(
-        _______ , KC_TAB  , SW_WIN  , TAB_L   , TAB_R   , XXXXXXX , QK_BOOT , XXXXXXX , XXXXXXX , XXXXXXX , KC_DEL  , _______   ,
-        _______ , OS_CMD  , OS_ALT  , OS_CTRL , OS_SHFT , KC_MNXT , KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , KC_BSPC , _______   ,
-        _______ , SPACE_L , SPACE_R , BACK    , FWD     , KC_MPLY , XXXXXXX , CW_TOGG , XXXXXXX , SW_LANG , KC_ENT  , TO(COLOR) ,
+        _______ , KC_HTAB  , SW_WIN  , TAB_L   , TAB_R   , XXXXXXX , KC_HOME , KC_PAGE_DOWN , KC_PAGE_UP , KC_END  , KC_DEL  , QK_BOOT   ,
+        _______ , OS_CMD  , OS_ALT  , OS_CTRL , OS_SHFT , KC_MNXT , KC_LEFT , KC_DOWN      , KC_UP      , KC_RGHT , KC_BSPC , _______   ,
+        _______ , SPACE_L , SPACE_R , BACK    , FWD     , KC_MPLY , XXXXXXX , CW_TOGG      , XXXXXXX    , SW_LANG , KC_ENT  , TO(COLOR) ,
         _______ , _______ , _______ , _______ , _______ , _______
     ),
 
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NUMPAD] = LAYOUT_split_3x6_3(
         _______ , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX  , XXXXXXX , KC_7 , KC_8 , KC_9 , KC_0    , _______ ,
         _______ , XXXXXXX , OS_ALT  , OS_CTRL , OS_SHFT , OSM_HYPR , XXXXXXX , KC_4 , KC_5 , KC_6 , OS_CMD  , _______ ,
-        _______ , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX  , KC_0    , KC_1 , KC_2 , KC_3 , XXXXXXX , _______ ,
+        _______ , XXXXXXX , KC_DOT  , KC_COMM , XXXXXXX , XXXXXXX  , KC_0    , KC_1 , KC_2 , KC_3 , XXXXXXX , _______ ,
         _______ , _______ , _______ , _______ , _______ , _______
     ),
 

@@ -43,6 +43,8 @@ enum keycodes {
 #define KC_HTAB HYPR_T(KC_TAB)
 #define KC_SESC RSFT_T(KC_ESC)
 #define KC_CQOT RCTL_T(KC_QUOT)
+#define KC_CCNT C(G(KC_ENT))
+#define KC_CCSM C(G(KC_COLN))
 
 // Function prototypes
 bool process_record_user(uint16_t keycode, keyrecord_t *record);
