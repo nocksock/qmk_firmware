@@ -22,13 +22,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define USE_MATRIX_I2C
 
-// #define TAPPING_TERM 150
+// #define TAPPING_TERM_PER_KEY
 // #define PERMISSIVE_HOLD
 
 // #define TAPPING_FORCE_HOLD
 /* Select hand configuration */
 
 #define MASTER_LEFT
+
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
@@ -49,6 +50,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define RGBLIGHT_EFFECT_KNIGHT
 // #define RGBLIGHT_EFFECT_CHRISTMAS
 #define RGBLIGHT_EFFECT_STATIC_GRADIENT 1
+#define RGB_DISABLE_WHEN_USB_SUSPENDED // turn off effects when suspended
+#define ENABLE_RGB_MATRIX_TYPING_HEATMAP
+#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 // #define RGBLIGHT_EFFECT_RGB_TEST
 // #define RGBLIGHT_EFFECT_ALTERNATING
 // #define RGBLIGHT_EFFECT_TWINKLE
@@ -57,3 +61,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_SAT_STEP 17
 #define RGBLIGHT_VAL_STEP 17
 #endif
+

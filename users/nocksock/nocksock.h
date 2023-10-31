@@ -8,6 +8,7 @@ enum layers {
     NAV,
     NUM,
     FKEY,
+    FPAD,
     NUMPAD,
     COLOR,
 };
@@ -36,6 +37,7 @@ enum keycodes {
 #define LA_SYM MO(SYM)
 #define LA_NAV MO(NAV)
 #define LA_NUM MO(NUM)
+#define LA_FPAD MO(FPAD)
 #define KC_LTZ LT(NUMPAD, KC_Z)
 #define KC_SESC RSFT_T(KC_ESC)
 #define KC_SRET RSFT_T(KC_ENT)
