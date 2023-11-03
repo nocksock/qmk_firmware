@@ -20,8 +20,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [SYM] = LAYOUT_moonlander(
         _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ ,
         _______ , KC_ESC  , KC_AT   , KC_HASH , KC_DLR  , KC_PERC , _______ , _______ , KC_CIRC , KC_AMPR , KC_ASTR , KC_LCBR , KC_RCBR , _______ ,
-        _______ , KC_MINS , KC_QUOT , KC_LPRN , KC_RPRN , KC_EQL  , _______ , _______ , XXXXXXX , OS_SHFT , OS_CTRL , OS_ALT  , OS_CMD  , _______ ,
-        _______ , KC_GRV  , KC_BSLS , KC_LBRC , KC_RBRC , KC_UNDS ,                     KC_PIPE , KC_EXLM , KC_LABK , KC_RABK , KC_QUES , _______ ,
+        OSM_HYPR, KC_MINS , KC_EQL , KC_LPRN , KC_RPRN , KC_QUOT  , _______ , _______ , KC_PIPE , OS_SHFT , OS_CTRL , OS_ALT  , OS_CMD  , OSM_HYPR ,
+        _______ , KC_GRV  , KC_BSLS , KC_LBRC , KC_RBRC , KC_UNDS ,                     _______ , KC_EXLM , KC_LABK , KC_RABK , KC_QUES , _______ ,
         _______ , _______ , _______ , _______ , _______ ,           _______ , _______ ,           _______ , _______ , _______ , _______ , _______ ,
                                       _______ , _______ , _______ ,                     _______ , _______ , _______
     ),
@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NAV] = LAYOUT_moonlander(
         _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ ,
         _______ , KC_TAB  , SW_WIN  , TAB_L   , TAB_R   , XXXXXXX , _______ , _______ , QK_BOOT , XXXXXXX , XXXXXXX , XXXXXXX , KC_DEL  , _______ ,
-        _______ , OS_CMD  , OS_ALT  , OS_CTRL , OS_SHFT , KC_MNXT , _______ , _______ , KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , KC_BSPC , _______ ,
+        OSM_HYPR, OS_CMD  , OS_ALT  , OS_CTRL , OS_SHFT , KC_MNXT , _______ , _______ , KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , KC_BSPC , OSM_HYPR ,
         _______ , SPACE_L , SPACE_R , BACK    , FWD     , KC_MPLY ,                     XXXXXXX , CW_TOGG , XXXXXXX , SW_LANG , KC_ENT  , _______ ,
         _______ , _______ , _______ , _______ , _______ ,           _______ , _______ ,           _______ , _______ , _______ , _______ , _______ ,
                                       _______ , _______ , _______ ,                     _______ , _______ , _______
