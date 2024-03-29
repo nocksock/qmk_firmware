@@ -4,6 +4,7 @@
 
 enum layers {
     BASE,
+    WIN_BASE,
     SYM,
     NAV,
     NUM,
